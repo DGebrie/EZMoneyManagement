@@ -1,49 +1,105 @@
 import React, { useState } from "react";
 import { Container, Stack, Button } from "react-bootstrap";
 import AddBudgetModal from "./components/AddBudgetModal";
-import { BudgetCard } from "./components/BudgetCard";
-import { useBudgets } from "./context/BudgetContext";
+import AddExpenseModal from "./components/AddExpenseModal";
+import ViewExpensesModal from "./components/ViewExpensesModal";
+import BudgetCard from "./components/BudgetCard";
+import TotalBudgetCard from "./components/TotalBudgetCard";
+import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard ";
+import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./context/BudgetContext";
+import { GiPiggyBank } from "react-icons/gi";
+import piggy from "./images/Piggybank.png";
+
+// import { Button, Stack } from "react-bootstrap"
+// import Container from "react-bootstrap/Container"
+// import AddBudgetModal from "./components/AddBudgetModal"
+// import AddExpenseModal from "./components/AddExpenseModal"
+// import ViewExpensesModal from "./components/ViewExpensesModal"
+// import BudgetCard from "./components/BudgetCard"
+// import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard"
+// import TotalBudgetCard from "./components/TotalBudgetCard"
+// import { useState } from "react"
+// import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext"
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
-  const { budgets } = useBudgets();
+  const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
+  const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
+  const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState();
+  const { budgets, getBudgetExpenses } = useBudgets();
+
+  function openAddExpenseModal(budgetId) {
+    setShowAddExpenseModal(true);
+    setAddExpenseModalBudgetId(budgetId);
+  }
 
   return (
     <>
-      <Container>
-        <Stack direction="horizontal" gap="2" className="my-4">
-          <h1 className="mx-auto">Budget</h1>
+      <Container className="my-4">
+        <Stack direction="horizontal" gap="2" className="mb-4">
+          <h1 className="me-auto">
+            <img
+              src={piggy}
+              alt="Piggy Bank"
+              height="30px"
+              style={{ marginRight: "10px" }}
+            />
+            Penny Pincher
+          </h1>
           <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
             Add Budget
           </Button>
-          <Button variant="outline-primary">Add Expense</Button>
+          <Button variant="outline-primary" onClick={openAddExpenseModal}>
+            Add Expense
+          </Button>
         </Stack>
         <div
           style={{
             display: "grid",
-            gridTemplaterColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
             gap: "1rem",
             alignItems: "flex-start",
           }}
         >
           {budgets.map((budget) => {
-            console.log(budget);
+            const amount = getBudgetExpenses(budget.id).reduce(
+              (total, expense) => total + expense.amount,
+              0
+            );
             return (
               <BudgetCard
                 key={budget.id}
                 name={budget.name}
-                amount={budget.amount}
+                amount={amount}
                 max={budget.max}
+                onAddExpenseClick={() => openAddExpenseModal(budget.id)}
+                onViewExpensesClick={() =>
+                  setViewExpensesModalBudgetId(budget.id)
+                }
               />
             );
           })}
-
-          {/* {console.log(budgets)} */}
+          <UncategorizedBudgetCard
+            onAddExpenseClick={openAddExpenseModal}
+            onViewExpensesClick={() =>
+              setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)
+            }
+          />
+          <TotalBudgetCard />
         </div>
       </Container>
       <AddBudgetModal
         show={showAddBudgetModal}
         handleClose={() => setShowAddBudgetModal(false)}
+      />
+      <AddExpenseModal
+        show={showAddExpenseModal}
+        defaultBudgetId={addExpenseModalBudgetId}
+        handleClose={() => setShowAddExpenseModal(false)}
+      />
+      <ViewExpensesModal
+        budgetId={viewExpensesModalBudgetId}
+        handleClose={() => setViewExpensesModalBudgetId()}
       />
     </>
   );
