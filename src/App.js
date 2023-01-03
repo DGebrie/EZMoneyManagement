@@ -7,8 +7,8 @@ import BudgetCard from "./components/BudgetCard";
 import TotalBudgetCard from "./components/TotalBudgetCard";
 import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard ";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./context/BudgetContext";
-import { GiPiggyBank } from "react-icons/gi";
-import piggy from "./images/Piggybank.png";
+
+import piggy from "./images/piggybank.png";
 
 // import { Button, Stack } from "react-bootstrap"
 // import Container from "react-bootstrap/Container"
