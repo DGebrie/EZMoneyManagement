@@ -2,7 +2,15 @@ import React from "react";
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
 
-export const BudgetCard = ({ name, amount, max, gray }) => {
+export default function BudgetCard({
+  name,
+  amount,
+  max,
+  gray,
+  hideButtons,
+  onAddExpenseClick,
+  onViewExpensesClick,
+}) {
   const classNames = [];
 
   if (amount > max) {
@@ -18,28 +26,40 @@ export const BudgetCard = ({ name, amount, max, gray }) => {
           <div className="me-2">{name}</div>
           <div className="d-flex align-items-baseline">
             {currencyFormatter.format(amount)}{" "}
-            <span className="text-muted fs-6 ms-1">
-              / {currencyFormatter.format(max)}
-            </span>
+            {max && (
+              <span className="text-muted fs-6 ms-1">
+                / {currencyFormatter.format(max)}
+              </span>
+            )}
           </div>
         </Card.Title>
-        <ProgressBar
-          className="rounded-pill"
-          variant={getProgressBarVariant(amount, max)}
-          min={0}
-          max={max}
-          now={amount}
-        />
-        <Stack direction="horizontal" gap="2" className="mt-4">
-          <Button variant="outline-primary" className="ms-auto" >
-            Add Expense
-          </Button>
-          <Button variant="outline-secondary">View Expenses</Button>
-        </Stack>
+        {max && (
+          <ProgressBar
+            className="rounded-pill"
+            variant={getProgressBarVariant(amount, max)}
+            min={0}
+            max={max}
+            now={amount}
+          />
+        )}
+        {!hideButtons && (
+          <Stack direction="horizontal" gap="2" className="mt-4">
+            <Button
+              variant="outline-primary"
+              className="ms-auto"
+              onClick={onAddExpenseClick}
+            >
+              Add Expense
+            </Button>
+            <Button variant="outline-secondary" onClick={onViewExpensesClick}>
+              View Expenses
+            </Button>
+          </Stack>
+        )}
       </Card.Body>
     </Card>
   );
-};
+}
 
 function getProgressBarVariant(amount, max) {
   const ratio = amount / max;
