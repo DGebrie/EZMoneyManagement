@@ -1,8 +1,8 @@
 import React from "react";
 import { useBudgets } from "../context/BudgetContext";
-import  BudgetCard  from "./BudgetCard";
+import BudgetCard from "./BudgetCard";
 
-export default function TotalBudgetCard() {
+export default function TotalBudgetCard(hideButtons) {
   const { expenses, budgets } = useBudgets();
   const amount = expenses.reduce((total, expense) => total + expense.amount, 0);
 
@@ -11,7 +11,7 @@ export default function TotalBudgetCard() {
 
   return (
     <>
-      <BudgetCard amount={amount} name="Total" gray max={max} />
+      <BudgetCard amount={amount} name="Total" gray max={max} hideButtons />
       {console.log({ amount })}
     </>
   );
