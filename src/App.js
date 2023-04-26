@@ -30,19 +30,27 @@ function App() {
         {/* if no info added yet, use this homepage */}
         {/* Welcome page */}
         {/* If theres already info stored use this */}
+
+        {/* make top a navbar component...fixed-top */}
         <Container className="my-4">
           <Stack direction="horizontal" gap="2" className="mb-4">
-            <h1 className="me-auto">
+            <h1
+              className="me-auto font-family-impact"
+              style={{
+                fontFamily: "impact",
+              }}
+            >
               <img
                 src={piggy}
                 alt="Piggy Bank"
                 height="30px"
                 style={{ marginRight: "10px" }}
               />
-              Penny Pincher
+              <i>Penny Pincher</i>
             </h1>
             <Button
-              variant="primary"
+              // variant="primary"
+              style={{ backgroundColor: "#223344" }}
               onClick={() => setShowAddBudgetModal(true)}
             >
               Add Budget
@@ -86,6 +94,7 @@ function App() {
             <TotalBudgetCard />
           </div>
         </Container>
+
         <AddBudgetModal
           show={showAddBudgetModal}
           handleClose={() => setShowAddBudgetModal(false)}
@@ -101,54 +110,74 @@ function App() {
         />
 
         {/* notification bar */}
-        <div
-          className="text-white text-center py-1 w-100"
-          style={{ backgroundColor: "#2256e8" }}
-        >
-          <h6>
-            See why Penny Pincher is the #1 budgeting tool{" "}
-            <a href="" className="text-white">
-              See Reviews
-            </a>
-          </h6>
-        </div>
 
-        {/* Hero only to be shown if no budgets */}
-
-        <div
-          className="p-6 d-flex justify-content-center row"
-          style={{
-            backgroundColor: "#b3e5fc",
-            font: "#223344",
-          }}
-        >
+        <section>
           <div
-            className="m-5 font-weight-bold col-md-3 align-self-center"
-            style={{ color: "#223344" }}
+            className="text-white text-center py-1 w-100"
+            style={{ backgroundColor: "#2256e8" }}
           >
-            <h1 className="mb-3">Monitor your funds,</h1>
-            <h4 className="mb-3">Maximize your fun.</h4>
-            <button
-              className="btn btn-lg "
-              style={{
-                backgroundColor: "#b3e5fc",
-                borderColor: "#223344",
-                font: "#223344",
-              }}
-              href=""
-              role="button"
-            >
-              Start Budgeting
-            </button>
+            <h6>
+              See why Penny Pincher is the #1 budgeting tool{" "}
+              <a href="" className="text-white">
+                See Reviews
+              </a>
+            </h6>
           </div>
-          <div className="col-md-3 align-self-center m-5">
-            <img src={save} alt="Piggy Bank" height="300px" style={{}} />
-          </div>
-        </div>
-        {/* Notification Bar */}
 
-        {/* Benefits */}
-        <Benefits />
+          {/* Hero only to be shown if no budgets */}
+
+          <div
+            className="p-6 d-flex justify-content-center row "
+            style={{
+              backgroundColor: "#cee2eb",
+              font: "#223344",
+            }}
+          >
+            <div
+              className="font-weight-bold col-md-6 text-center "
+              style={{
+                color: "#223344",
+                marginTop: "200px",
+                marginBottom: "200px",
+              }}
+            >
+              <h1
+                className="mb-3 display-1"
+                style={{
+                  fontFamily: "impact",
+                }}
+              >
+                <i>Monitor your funds</i>
+              </h1>
+              <h4
+                className="mb-3 display-4"
+                style={{
+                  fontFamily: "impact",
+                }}
+              >
+                <i>Maximize your F U N</i>
+              </h4>
+              <button
+                className="btn btn-lg"
+                style={{
+                  backgroundColor: "#cee2eb",
+                  borderColor: "#223344",
+                  font: "#223344",
+                }}
+                href=""
+                role="button"
+              >
+                Start Budgeting
+              </button>
+            </div>
+            {/* <div className="col-md-3 align-self-center m-5 text-center">
+              <img src={save} alt="Piggy Bank" height="300px" style={{}} />
+            </div> */}
+          </div>
+
+          {/* Benefits */}
+          <Benefits />
+        </section>
       </section>
     </>
   );
