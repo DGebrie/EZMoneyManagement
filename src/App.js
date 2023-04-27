@@ -10,7 +10,7 @@ import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard ";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./context/BudgetContext";
 import Benefits from "./components/Benefits";
 import piggy from "./images/piggybank.png";
-import save from "./images/saveimg.svg";
+// import save from "./images/saveimg.svg";
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -55,7 +55,11 @@ function App() {
             >
               Add Budget
             </Button>
-            <Button variant="outline-primary" onClick={openAddExpenseModal}>
+            <Button
+              variant="outline-primary"
+              style={{ color: "#223344" }}
+              onClick={openAddExpenseModal}
+            >
               Add Expense
             </Button>
           </Stack>
@@ -147,7 +151,7 @@ function App() {
                   fontFamily: "impact",
                 }}
               >
-                <i>Monitor your funds</i>
+                <i>Manage your funds</i>
               </h1>
               <h4
                 className="mb-3 display-4"
@@ -157,26 +161,26 @@ function App() {
               >
                 <i>Maximize your F U N</i>
               </h4>
-              <button
-                className="btn btn-lg"
+
+              <Button
+                className="mr-4"
+                size="lg"
                 style={{
                   backgroundColor: "#cee2eb",
                   borderColor: "#223344",
-                  font: "#223344",
+                  color: "#223344",
                 }}
-                href=""
-                role="button"
+                onClick={openAddExpenseModal}
               >
                 Start Budgeting
-              </button>
+              </Button>
             </div>
-            {/* <div className="col-md-3 align-self-center m-5 text-center">
-              <img src={save} alt="Piggy Bank" height="300px" style={{}} />
-            </div> */}
           </div>
 
           {/* Benefits */}
           <Benefits />
+
+          {/* ADD FOOTER */}
         </section>
       </section>
     </>

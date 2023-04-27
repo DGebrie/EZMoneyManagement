@@ -49,7 +49,16 @@ export default function Benefits() {
           <i>and many more...</i>
         </h1>
 
-        <Button>Start Budgeting</Button>
+        <Button
+          className="bg-light hover-primary"
+          size="lg"
+          style={{
+            borderColor: "#223344",
+            color: "#223344",
+          }}
+        >
+          Start Budgeting
+        </Button>
       </div>
     </div>
   );
