@@ -26,7 +26,7 @@ const Hero = ({ openAddExpenseModal, budgets }) => {
                 fontFamily: "impact",
               }}
             >
-              <i>Manage your funds</i>
+              <em>Manage your funds</em>
             </h1>
             <h4
               className="mb-3 display-4"
@@ -34,7 +34,7 @@ const Hero = ({ openAddExpenseModal, budgets }) => {
                 fontFamily: "impact",
               }}
             >
-              <i>Maximize your F U N</i>
+              <em>Maximize your F U N</em>
             </h4>
 
             <Button

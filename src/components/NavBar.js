@@ -49,7 +49,7 @@ const NavBar = () => {
                     height="30px"
                     style={{ marginRight: "10px" }}
                   />
-                  <i>Penny Pincher</i>
+                  <em>Penny Pincher</em>
                 </h1>
 
                 <Button
@@ -111,7 +111,7 @@ const NavBar = () => {
                   height="30px"
                   style={{ marginRight: "10px" }}
                 />
-                <i>Existing Budget</i>
+                <em>Existing Budget</em>
               </h1>
               <Button
                 // variant="primary"

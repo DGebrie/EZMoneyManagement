@@ -26,7 +26,7 @@ export default function Benefits({ budgets }) {
     return (
       <div className="p-5 bg-light">
         <h2 className="text-center mb-5">
-          <i>Why Should You Budget?</i>
+          <em>Why Should You Budget?</em>
         </h2>
 
         {benefitsListData.map((benefit, i) => {
@@ -68,7 +68,7 @@ export default function Benefits({ budgets }) {
         })}
         <div className="text-center">
           <h3 className="mb-5">
-            <i>Check out our blogs...</i>
+            <em>Check out our blogs...</em>
           </h3>
 
           <Button
