@@ -1,8 +1,8 @@
 import React from "react";
 import { Checkmark } from "react-checkmark";
-import { Container, Stack, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-export default function Benefits() {
+export default function Benefits({ budgets }) {
   const benefitsListData = [
     {
       title: "Avoid Overspending",
@@ -22,44 +22,69 @@ export default function Benefits() {
     },
   ];
 
-  return (
-    <div className="p-5 bg-light">
-      <h2 className="text-center mb-5">
-        <i>Why Should You Budget?</i>
-      </h2>
+  if (budgets.length === 0)
+    return (
+      <div className="p-5 bg-light">
+        <h2 className="text-center mb-5">
+          <i>Why Should You Budget?</i>
+        </h2>
 
-      {benefitsListData.map((benefit) => (
-        <>
-          <div
-            className="row d-flex justify-content-center mb-5"
-            style={{ fontFamily: "impact" }}
+        {benefitsListData.map((benefit, i) => {
+          if (i % 2 === 0) {
+            return (
+              <>
+                <div
+                  className="row d-flex justify-content-center mb-5"
+                  style={{ fontFamily: "impact" }}
+                >
+                  <div className="col-md-5 align-items-center mr-0 mb-4">
+                    <Checkmark size="xxLarge" color="#223344" />
+                  </div>
+                  <div className="col-md-5 mr-4">
+                    <h1 className="text-center">{benefit.title}</h1>
+                    <p className="text-center">{benefit.text}</p>
+                  </div>
+                </div>
+              </>
+            );
+          } else {
+            return (
+              <>
+                <div
+                  className="row d-flex justify-content-center mb-5"
+                  style={{ fontFamily: "impact" }}
+                >
+                  <div className="col-md-5 mr-4">
+                    <h1 className="text-center">{benefit.title}</h1>
+                    <p className="text-center">{benefit.text}</p>
+                  </div>
+                  <div className="col-md-5 align-items-center mr-0 mb-4">
+                    <Checkmark size="xxLarge" color="#223344" />
+                  </div>
+                </div>
+              </>
+            );
+          }
+        })}
+        <div className="text-center">
+          <h3 className="mb-5">
+            <i>Check out our blogs...</i>
+          </h3>
+
+          <Button
+            className="bg-light hover-primary"
+            size="lg"
+            style={{
+              borderColor: "#223344",
+              color: "#223344",
+            }}
+            href="https://tenor.com/view/i-was-just-kidding-ralphie-a-christmas-story-just-joking-jk-gif-19563279"
+            target="_blank"
+            rel="noreferrer"
           >
-            <div className="col-md-3 align-items-center mr-0 mb-4">
-              <Checkmark size="xxLarge" color="#223344" />
-            </div>
-            <div className="col-md-0 mr-4">
-              <h1 className="text-center">{benefit.title}</h1>
-              <p className="text-center">{benefit.text}</p>
-            </div>
-          </div>
-        </>
-      ))}
-      <div className="text-center">
-        <h1 className="mb-5">
-          <i>and many more...</i>
-        </h1>
-
-        <Button
-          className="bg-light hover-primary"
-          size="lg"
-          style={{
-            borderColor: "#223344",
-            color: "#223344",
-          }}
-        >
-          Start Budgeting
-        </Button>
+            Blogs
+          </Button>
+        </div>
       </div>
-    </div>
-  );
+    );
 }
