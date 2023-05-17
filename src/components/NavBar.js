@@ -11,10 +11,12 @@ import UncategorizedBudgetCard from "./UncategorizedBudgetCard ";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../context/BudgetContext";
 import piggy from "../images/piggybank.png";
 import ReviewsBar from "./ReviewsBar";
+import GetStartedModal from "./GetStartedModal";
 
 const NavBar = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
+  const [showGetStartedModal, setShowGetStartedModal] = useState(false);
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState();
   const { budgets, getBudgetExpenses } = useBudgets();
@@ -24,8 +26,12 @@ const NavBar = () => {
     setAddExpenseModalBudgetId(budgetId);
   }
 
+  function openGetStartedModal() {
+    setShowGetStartedModal(true);
+  }
+
   return (
-    <section className="bg-light overflow-hidden fixed-top">
+    <section className="bg-light overflow-hidden fixed-top d-block">
       {/* if no info added yet, use this homepage */}
       {/* Welcome page */}
       {/* If theres already info stored use this */}
@@ -52,10 +58,20 @@ const NavBar = () => {
                   <em>Penny Pincher</em>
                 </h1>
 
+                {/* <------ Not Needed ------> */}
                 <Button
                   // variant="primary"
                   style={{ backgroundColor: "#223344" }}
                   onClick={() => setShowAddBudgetModal(true)}
+                >
+                  Get Started --ADD Budget
+                </Button>
+                {/* <--------------------------> */}
+
+                <Button
+                  variant="outline-primary"
+                  style={{ color: "#223344" }}
+                  onClick={() => setShowGetStartedModal(true)}
                 >
                   Get Started
                 </Button>
@@ -79,18 +95,16 @@ const NavBar = () => {
               </div>
             </Container>
 
+            <GetStartedModal
+              show={showGetStartedModal}
+              handleClose={() => setShowGetStartedModal(false)}
+            />
+
+            {/* ---- DO NOT NEED  ---- */}
             <AddBudgetModal
               show={showAddBudgetModal}
               handleClose={() => setShowAddBudgetModal(false)}
-            />
-            <AddExpenseModal
-              show={showAddExpenseModal}
-              defaultBudgetId={addExpenseModalBudgetId}
-              handleClose={() => setShowAddExpenseModal(false)}
-            />
-            <ViewExpensesModal
-              budgetId={viewExpensesModalBudgetId}
-              handleClose={() => setViewExpensesModalBudgetId()}
+              // -------------------------
             />
           </div>
           <ReviewsBar />

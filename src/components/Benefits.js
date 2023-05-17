@@ -1,6 +1,7 @@
 import React from "react";
 import { Checkmark } from "react-checkmark";
 import { Button } from "react-bootstrap";
+import Articles from "./Articles";
 
 export default function Benefits({ budgets }) {
   const benefitsListData = [
@@ -25,7 +26,10 @@ export default function Benefits({ budgets }) {
   if (budgets.length === 0)
     return (
       <div className="p-5 bg-light">
-        <h2 className="text-center mb-5">
+        <h2
+          className="text-center mb-5 "
+          // style={{ color: "#cee2eb" }}
+        >
           <em>Why Should You Budget?</em>
         </h2>
 
@@ -37,10 +41,10 @@ export default function Benefits({ budgets }) {
                   className="row d-flex justify-content-center mb-5"
                   style={{ fontFamily: "impact" }}
                 >
-                  <div className="col-md-5 align-items-center mr-0 mb-4">
+                  <div className="col-md-4 align-items-center mr-0 mb-4">
                     <Checkmark size="xxLarge" color="#223344" />
                   </div>
-                  <div className="col-md-5 mr-4">
+                  <div className="col-md-4 mr-4">
                     <h1 className="text-center">{benefit.title}</h1>
                     <p className="text-center">{benefit.text}</p>
                   </div>
@@ -54,11 +58,11 @@ export default function Benefits({ budgets }) {
                   className="row d-flex justify-content-center mb-5"
                   style={{ fontFamily: "impact" }}
                 >
-                  <div className="col-md-5 mr-4">
+                  <div className="col-md-4 mr-4">
                     <h1 className="text-center">{benefit.title}</h1>
                     <p className="text-center">{benefit.text}</p>
                   </div>
-                  <div className="col-md-5 align-items-center mr-0 mb-4">
+                  <div className="col-md-4 align-items-center mr-0 mb-4">
                     <Checkmark size="xxLarge" color="#223344" />
                   </div>
                 </div>
@@ -67,10 +71,7 @@ export default function Benefits({ budgets }) {
           }
         })}
         <div className="text-center">
-          <h3 className="mb-5">
-            <em>Check out our blogs...</em>
-          </h3>
-
+          <Articles />
           <Button
             className="bg-light hover-primary"
             size="lg"
