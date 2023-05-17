@@ -7,10 +7,8 @@ import {
   useBudgets,
 } from "../../context/BudgetContext";
 import { Container } from "react-bootstrap";
-import Budgets from "./Budgets";
-import BudgetPie from "./BudgetPie";
 
-const Home = () => {
+const Budgets = () => {
   // Buttons not working
   //remove budget from nav bar after complete
 
@@ -30,23 +28,44 @@ const Home = () => {
   }
   return (
     <div>
-      <Container className="my-4">
-        {/* NAV */}
-        {/* Budget Graph */}
-        {/* Show Budget Cards */}
-
-        <Budgets
-          budgets={budgets}
-          viewExpensesModalBudgetId={viewExpensesModalBudgetId}
-          addExpenseModalBudgetId={addExpenseModalBudgetId}
-          openAddExpenseModal={openAddExpenseModal}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "1rem",
+          alignItems: "flex-start",
+        }}
+      >
+        {budgets.map((budget) => {
+          const amount = getBudgetExpenses(budget.id).reduce(
+            (total, expense) => total + expense.amount,
+            0
+          );
+          return (
+            <BudgetCard
+              key={budget.id}
+              name={budget.name}
+              amount={amount}
+              max={budget.max}
+              onAddExpenseClick={() => openAddExpenseModal(budget.id)}
+              onViewExpensesClick={() =>
+                setViewExpensesModalBudgetId(budget.id)
+              }
+            />
+          );
+        })}
+        <UncategorizedBudgetCard
+          onAddExpenseClick={openAddExpenseModal}
+          onViewExpensesClick={() =>
+            setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)
+          }
         />
-      </Container>
-      <BudgetPie />
-      {/* pass in budgets */}
+        <TotalBudgetCard />
+      </div>
+
       {/* Add Credit Card Debt and pay off calc --using interest */}
     </div>
   );
 };
 
-export default Home;
+export default Budgets;

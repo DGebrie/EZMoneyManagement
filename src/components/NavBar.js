@@ -12,6 +12,7 @@ import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../context/BudgetContext";
 import piggy from "../images/piggybank.png";
 import ReviewsBar from "./ReviewsBar";
 import GetStartedModal from "./GetStartedModal";
+import Home from "./SignedIn/Home";
 
 const NavBar = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -156,16 +157,19 @@ const NavBar = () => {
                   0
                 );
                 return (
-                  <BudgetCard
-                    key={budget.id}
-                    name={budget.name}
-                    amount={amount}
-                    max={budget.max}
-                    onAddExpenseClick={() => openAddExpenseModal(budget.id)}
-                    onViewExpensesClick={() =>
-                      setViewExpensesModalBudgetId(budget.id)
-                    }
-                  />
+                  <>
+                    <BudgetCard
+                      key={budget.id}
+                      name={budget.name}
+                      amount={amount}
+                      max={budget.max}
+                      onAddExpenseClick={() => openAddExpenseModal(budget.id)}
+                      onViewExpensesClick={() =>
+                        setViewExpensesModalBudgetId(budget.id)
+                      }
+                    />
+                    {console.log(budget)}
+                  </>
                 );
               })}
               <UncategorizedBudgetCard
@@ -191,6 +195,7 @@ const NavBar = () => {
             budgetId={viewExpensesModalBudgetId}
             handleClose={() => setViewExpensesModalBudgetId()}
           />
+          <Home />
         </div>
       )}
 

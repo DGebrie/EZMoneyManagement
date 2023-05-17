@@ -36,14 +36,8 @@ function App() {
           addExpenseModalBudgetId={addExpenseModalBudgetId}
           openAddExpenseModal={openAddExpenseModal}
         />
+        {/* <Home /> */}
         <Hero openAddExpenseModal={openAddExpenseModal} budgets={budgets} />
-        <Home
-          showAddBudgetModal={showAddBudgetModal}
-          budgets={budgets}
-          viewExpensesModalBudgetId={viewExpensesModalBudgetId}
-          addExpenseModalBudgetId={addExpenseModalBudgetId}
-          openAddExpenseModal={openAddExpenseModal}
-        />
 
         <Benefits budgets={budgets} />
         <Footer />
