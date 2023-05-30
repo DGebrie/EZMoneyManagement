@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 
-import { useBudgets } from "./context/BudgetContext";
-import Benefits from "./components/Benefits";
+import { useBudgets } from "../context/BudgetContext";
+import Benefits from "./Benefits";
 
-import Hero from "./components/Hero";
-import NavBar from "./components/NavBar";
-import Landing from "./components/Landing";
+import Hero from "./Hero";
+import NavBar from "./NavBar";
 
-import Articles from "./components/Articles";
-import GraphPie from "./components/GraphPie";
-import Footer from "./components/Footer";
+import Footer from "./Footer";
 
-// Add blogs, financial literacy
-// FUTURE: Add Graph when budgets exist
-
-function App() {
+const Landing = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
@@ -25,11 +19,9 @@ function App() {
     setShowAddExpenseModal(true);
     setAddExpenseModalBudgetId(budgetId);
   }
-
   return (
     <>
-      <Landing />
-      {/* <section className="">
+      <section className="bg-light">
         <NavBar
           showAddBudgetModal={showAddBudgetModal}
           budgets={budgets}
@@ -37,12 +29,14 @@ function App() {
           addExpenseModalBudgetId={addExpenseModalBudgetId}
           openAddExpenseModal={openAddExpenseModal}
         />
+
         <Hero openAddExpenseModal={openAddExpenseModal} budgets={budgets} />
         <Benefits budgets={budgets} />
+
         <Footer />
-      </section> */}
+      </section>
     </>
   );
-}
+};
 
-export default App;
+export default Landing;

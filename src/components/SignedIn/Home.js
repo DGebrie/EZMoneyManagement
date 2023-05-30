@@ -35,12 +35,12 @@ const Home = () => {
         {/* Budget Graph */}
         {/* Show Budget Cards */}
 
-        <Budgets
+        {/* <Budgets
           budgets={budgets}
           viewExpensesModalBudgetId={viewExpensesModalBudgetId}
           addExpenseModalBudgetId={addExpenseModalBudgetId}
           openAddExpenseModal={openAddExpenseModal}
-        />
+        /> */}
       </Container>
       <BudgetPie />
       {/* pass in budgets */}

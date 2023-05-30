@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import GraphPie from "./GraphPie";
+import AddBudgetModal from "./AddBudgetModal";
+import checklist from "../images/budgetchecklist.png";
 
-const Hero = ({ openAddExpenseModal, budgets }) => {
+const Hero = ({ budgets }) => {
+  const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
+
   if (budgets.length === 0)
     return (
       <>
         <div
-          className="d-flex justify-content-center row overflow-hidden align-items-cente text-center"
+          className="d-flex justify-content-center row overflow-hidden bg-white w-screen h-screen"
           style={{
-            backgroundColor: "#cee2eb",
+            // backgroundColor: "#cee2eb",
             font: "#223344",
             paddingTop: "65px",
           }}
         >
           <div
-            className="font-weight-bold col-md-4 align-content-center"
+            className="font-weight-bold col-md-4 mb-4 align-content-center "
             style={{
               color: "#223344",
               marginTop: "200px",
+              marginLeft: "2rem",
+              marginBottom: "100px",
             }}
           >
             <h3
@@ -35,7 +41,7 @@ const Hero = ({ openAddExpenseModal, budgets }) => {
                 fontFamily: "impact",
               }}
             >
-              <em>Maximize your F U N</em>
+              <em>Maximize your FUN</em>
             </h3>
 
             <Button
@@ -46,22 +52,33 @@ const Hero = ({ openAddExpenseModal, budgets }) => {
                 borderColor: "#223344",
                 color: "#223344",
               }}
-              onClick={openAddExpenseModal}
+              onClick={() => setShowAddBudgetModal(true)}
             >
               Start Budgeting
             </Button>
           </div>
           <div
-            className="col-md-4 d-flex align-items-center"
+            className="col-md-4 d-xl-block d-none "
             style={{
               color: "#223344",
               marginTop: "150px",
-              marginBottom: "50px",
+              // marginBottom: "50px",
             }}
           >
-            <GraphPie />
+            <img
+              src={checklist}
+              alt="Piggy Bank"
+              className="img-fluid img"
+              // height="30px"
+              // style={{ marginRight: "10px" }}
+            />
+            {/* <GraphPie /> */}
           </div>
         </div>
+        <AddBudgetModal
+          show={showAddBudgetModal}
+          handleClose={() => setShowAddBudgetModal(false)}
+        />
       </>
     );
 };

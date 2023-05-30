@@ -3,8 +3,8 @@ import piggy from "../images/piggybank.png";
 
 const Footer = () => {
   return (
-    <div className="m-4 p-4 ">
-      <div className="col-md-4">
+    <div className="m-4 p-4 bg-white">
+      <div className="d-flex justify-content-center">
         <ul className="list-unstyled ">
           <li>Blogs</li>
           <li>Contact</li>

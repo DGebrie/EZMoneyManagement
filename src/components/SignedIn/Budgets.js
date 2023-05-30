@@ -6,12 +6,16 @@ import {
   UNCATEGORIZED_BUDGET_ID,
   useBudgets,
 } from "../../context/BudgetContext";
+import AddExpenseModal from "../AddExpenseModal";
+import AddBudgetModal from "../AddBudgetModal";
+import ViewExpensesModal from "../ViewExpensesModal";
+
 import { Container } from "react-bootstrap";
 
 const Budgets = () => {
   // Buttons not working
   //remove budget from nav bar after complete
-
+  const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
   const [showGetStartedModal, setShowGetStartedModal] = useState(false);
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
@@ -61,6 +65,19 @@ const Budgets = () => {
           }
         />
         <TotalBudgetCard />
+        <AddBudgetModal
+          show={showAddBudgetModal}
+          handleClose={() => setShowAddBudgetModal(false)}
+        />
+        <AddExpenseModal
+          show={showAddExpenseModal}
+          defaultBudgetId={addExpenseModalBudgetId}
+          handleClose={() => setShowAddExpenseModal(false)}
+        />
+        <ViewExpensesModal
+          budgetId={viewExpensesModalBudgetId}
+          handleClose={() => setViewExpensesModalBudgetId()}
+        />
       </div>
 
       {/* Add Credit Card Debt and pay off calc --using interest */}

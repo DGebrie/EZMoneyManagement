@@ -25,52 +25,51 @@ export default function Benefits({ budgets }) {
 
   if (budgets.length === 0)
     return (
-      <div className="p-5 bg-light">
+      <div className="bg-light overflow-hidden">
         <h2
-          className="text-center mb-5 "
-          // style={{ color: "#cee2eb" }}
+          className="text-center mb-5 p-5 text-secondary"
+          style={{ fontFamily: "impact", color: "#223344" }}
         >
-          <em>Why Should You Budget?</em>
+          Why Use Penny Pincher?
         </h2>
-
-        {benefitsListData.map((benefit, i) => {
-          if (i % 2 === 0) {
-            return (
-              <>
+        <div className="container">
+          {benefitsListData.map((benefit, i) => {
+            if (i % 2 === 0) {
+              return (
                 <div
                   className="row d-flex justify-content-center mb-5"
                   style={{ fontFamily: "impact" }}
                 >
-                  <div className="col-md-4 align-items-center mr-0 mb-4">
-                    <Checkmark size="xxLarge" color="#223344" />
+                  <div className="col-md-4 p-0 mb-4">
+                    <Checkmark size="xxLarge" color="grey" />
                   </div>
-                  <div className="col-md-4 mr-4">
-                    <h1 className="text-center">{benefit.title}</h1>
+                  <div className="col-md-4">
+                    <h2 className="text-center">{benefit.title}</h2>
                     <p className="text-center">{benefit.text}</p>
                   </div>
                 </div>
-              </>
-            );
-          } else {
-            return (
-              <>
+              );
+            } else {
+              return (
                 <div
-                  className="row d-flex justify-content-center mb-5"
+                  className="container row d-flex justify-content-center mb-5"
                   style={{ fontFamily: "impact" }}
                 >
                   <div className="col-md-4 mr-4">
-                    <h1 className="text-center">{benefit.title}</h1>
+                    <h2 className="text-center">{benefit.title}</h2>
                     <p className="text-center">{benefit.text}</p>
                   </div>
-                  <div className="col-md-4 align-items-center mr-0 mb-4">
-                    <Checkmark size="xxLarge" color="#223344" />
+                  <div className="col-md-4 mr-0 mb-4">
+                    <span className="my-auto">
+                      <Checkmark size="xxLarge" color="grey" />
+                    </span>
                   </div>
                 </div>
-              </>
-            );
-          }
-        })}
-        <div className="text-center">
+              );
+            }
+          })}
+        </div>
+        <div className="text-center mb-4">
           <Articles />
           <Button
             className="bg-light hover-primary"
